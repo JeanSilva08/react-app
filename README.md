@@ -1,10 +1,6 @@
   <h1>React-app</h1>
-
-    <p></p>
-
-    <h2>Table of Contents</h2>
-
-    <ul>
+<h2>Table of Contents</h2>
+<ul>
         <li><a href="#getting-started">Getting Started</a></li>
         <ul>
             <li><a href="#prerequisites">Prerequisites</a></li>
@@ -16,44 +12,44 @@
         <li><a href="#license">License</a></li>
     </ul>
 
-    <h2 id="getting-started">Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 
-    <h3 id="prerequisites">Prerequisites</h3>
+<h3 id="prerequisites">Prerequisites</h3>
 
-    <p>Before you begin, ensure you have met the following requirements:</p>
+  <p>Before you begin, ensure you have met the following requirements:</p>
 
-    <ul>
+  <ul>
         <li>A modern web browser</li>
         <li>Text editor of your choice (e.g., Visual Studio Code, Sublime Text)</li>
     </ul>
 
-    <h3 id="installation">Installation</h3>
+  <h3 id="installation">Installation</h3>
 
-    <ol>
+   <ol>
         <li>Clone the repository:</li>
     </ol>
 
-    <pre><code>git clone https://github.com/your-username/your-project.git</code></pre>
+  <pre><code>git clone https://github.com/your-username/your-project.git</code></pre>
 
-    <ol start="2">
+   <ol start="2">
         <li>Open the project folder:</li>
     </ol>
 
-    <pre><code>cd your-project</code></pre>
+  <pre><code>cd your-project</code></pre>
 
-    <ol start="3">
+  <ol start="3">
         <li>Open the HTML file in your preferred web browser or set up a local server.</li>
     </ol>
 
-    <h2 id="usage">Usage</h2>
+  <h2 id="usage">Usage</h2>
 
-    <p>Describe how to use your project or provide examples and screenshots.</p>
+  <p>Describe how to use your project or provide examples and screenshots.</p>
 
-    <h2 id="folder-structure">Folder Structure</h2>
+  <h2 id="folder-structure">Folder Structure</h2>
 
-    <p>Explain the organization of your project's folders and files.</p>
+  <p>Explain the organization of your project's folders and files.</p>
 
-    <pre><code>
+  <pre><code>
     /your-project
     |-- index.html
     |-- css/
@@ -65,14 +61,12 @@
     |   |-- image2.png
     |-- ...
     </code></pre>
+  <h2 id="contributing">Contributing</h2>
 
-    <h2 id="contributing">Contributing</h2>
+   <p>If you would like to contribute to the project, please follow the guidelines in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 
-    <p>If you would like to contribute to the project, please follow the guidelines in <a href="CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+   <h2 id="license">License</h2>
 
-    <h2 id="license">License</h2>
+   <p>This project is licensed under the <a href="LICENSE">Your License Name</a> License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 
-    <p>This project is licensed under the <a href="LICENSE">Your License Name</a> License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
 
-</body>
-</html>
