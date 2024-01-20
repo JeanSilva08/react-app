@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import useBusinessLogic from './businessLogic';
 
@@ -9,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello, {user.name}!</h1>
+      <h1>Hello, {user.name || ''}!</h1>
       {dynamicFormView.map((field, index) => (
         <div key={index}>
           <label>{field.label}</label>

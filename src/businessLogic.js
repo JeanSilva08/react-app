@@ -1,31 +1,57 @@
-// src/businessLogic.js
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const useBusinessLogic = () => {
-  const [user, setUser] = useState({ name: 'John Doe', email: 'john.doe@example.com' }); // Add other fields as needed
+  const [user, setUser] = useState({ name: '' }); // Initialize with default values
+  const [userPermissions, setUserPermissions] = useState([]);
 
-  const generateDynamicForm = () => {
-    // Logic to generate a dynamic form based on user permissions
-    // Modify this logic based on your specific requirements.
-    const userPermissions = ['user:profile:view', 'user:profile:edit'];
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('/api/users', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk', // Replace with your actual credentials
+          },
+        });
 
-    // Define your form fields with initial visibility set to false
-    let dynamicForm = [
-      { label: 'View Profile', name: 'profile', type: 'readonly', visible: false },
-      { label: 'Edit Profile', name: 'profile', type: 'editable', visible: false },
-      // Add other fields as needed
-    ];
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
 
-    // Set visibility based on user permissions
+          const permissionsResponse = await fetch(`/api/user/permissions/${userData.id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk', // Replace with your actual credentials
+            },
+          });
+
+          if (permissionsResponse.ok) {
+            const permissionsData = await permissionsResponse.json();
+            setUserPermissions(permissionsData.permissions);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  const generateDynamicForm = (canEdit) => {
+    let dynamicForm = [];
+
     if (userPermissions.includes('user:profile:view')) {
-      dynamicForm.find((field) => field.type === 'readonly').visible = true;
+      dynamicForm.push({ label: 'View Profile', name: 'profile', type: 'readonly' });
     }
 
-    if (userPermissions.includes('user:profile:edit')) {
-      dynamicForm.find((field) => field.type === 'editable').visible = true;
+    if (canEdit && userPermissions.includes('user:profile:edit')) {
+      dynamicForm.push({ label: 'Edit Profile', name: 'profile', type: 'editable' });
     }
 
-    return dynamicForm.filter((field) => field.visible);
+    return dynamicForm;
   };
 
   const handleInputChange = (fieldName, value) => {
