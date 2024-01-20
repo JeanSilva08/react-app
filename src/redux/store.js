@@ -1,9 +1,6 @@
-// src/redux/store.js
-
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers';
 
-// Include additional user data in initialState
 const initialState = {
   user: {
     permissions: [], // Permissions array

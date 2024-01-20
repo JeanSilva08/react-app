@@ -1,15 +1,17 @@
 // src/components/CustomInput.js
 import React from 'react';
-import { useField } from 'formik';
 
-const CustomInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-
+const CustomInput = ({ label, value, onChange, maxLength, error }) => {
   return (
     <div>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <input {...field} {...props} />
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+      <label>{label}</label>
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        maxLength={maxLength}
+      />
+      {error && <div className="error">{error}</div>}
     </div>
   );
 };

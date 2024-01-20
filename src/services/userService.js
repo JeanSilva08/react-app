@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:3000/api'; // Update with your backend URL
+// src/services/userService.js
+const BASE_URL = 'http://localhost:3000/api';
 
 export const getAllUsers = async () => {
   const response = await fetch(`${BASE_URL}/users`);

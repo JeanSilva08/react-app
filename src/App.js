@@ -1,7 +1,6 @@
-// src/App.js
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateUserProfile } from './redux/actions/userActions';
+import { fetchAllUsers, updateUserProfileAction } from './redux/actions/userActions';
 
 function App() {
   const dispatch = useDispatch();
@@ -9,7 +8,7 @@ function App() {
 
   const handleUpdateProfile = () => {
     // Dispatch the action to update the user profile
-    dispatch(updateUserProfile(/* pass necessary parameters */));
+    dispatch(updateUserProfileAction(/* pass necessary parameters */));
   };
 
   return (
