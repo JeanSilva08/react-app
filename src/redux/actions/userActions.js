@@ -1,10 +1,11 @@
 // src/redux/actions/userActions.js
-export const updateUserProfile = (userData) => {
-    // Add logic to update the user profile
-    // For now, let's just return the action
-    return {
-      type: 'UPDATE_USER_PROFILE',
-      payload: userData,
-    };
-  };
-  
+
+export const setUserPermissions = (permissions) => ({
+  type: 'SET_USER_PERMISSIONS',
+  payload: permissions,
+});
+
+export const updateUserProfile = (userData) => ({
+  type: 'UPDATE_USER_PROFILE',
+  payload: userData,
+});

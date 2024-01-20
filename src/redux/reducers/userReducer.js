@@ -1,17 +1,9 @@
 // src/redux/reducers/userReducer.js
-const initialState = {
-  // Define initial user state if needed
-};
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = { permissions: [] }, action) => {
   switch (action.type) {
-    case 'UPDATE_USER_PROFILE':
-      // Handle the user profile update in your state
-      // For now, just return the new user data
-      return {
-        ...state,
-        ...action.payload,
-      };
+    case 'SET_USER_PERMISSIONS':
+      return { ...state, permissions: action.payload };
     default:
       return state;
   }

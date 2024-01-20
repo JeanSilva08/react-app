@@ -8,8 +8,8 @@ function App() {
   const user = useSelector((state) => state.user);
 
   const handleUpdateProfile = () => {
-    // Example: Dispatch an action to update the user profile
-    dispatch(updateUserProfile({ name: 'New Name', email: 'new@email.com' }));
+    // Dispatch the action to update the user profile
+    dispatch(updateUserProfile(/* pass necessary parameters */));
   };
 
   return (

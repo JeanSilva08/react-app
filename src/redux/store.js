@@ -1,10 +1,23 @@
 // src/redux/store.js
-import { createStore } from 'redux';
+
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers';
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+// Include additional user data in initialState
+const initialState = {
+  user: {
+    permissions: [], // Permissions array
+    userData: {
+      name: '',    // User's name
+      email: '',   // User's email
+      // Add more fields as needed
+    },
+  },
+};
+
+const store = configureStore({
+  reducer: rootReducer,
+  preloadedState: initialState,
+});
 
 export default store;
