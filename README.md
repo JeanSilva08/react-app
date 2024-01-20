@@ -93,25 +93,3 @@ react-app/
   <li>Open your web browser and navigate to <a href="http://localhost:3000">http://localhost:3000</a>.</li>
  <li>Interact with the application, updating the profile form based on your permissions.</li>
   </ol>
-
-  <h2 id="contributing">Contributing</h2>
-
-   <ol>
- <li><strong>Fork the repository on GitHub.</strong></li>
-
- <li><strong>Clone your forked repository to your local machine.</strong></li>
- <code>git clone https://github.com/JeanSilva08/react-app.git</code>
-
- <li><strong>Create a new branch for your changes.</strong></li>
-  <code>git checkout -b feature/your-feature-name</code>
-
-<li><strong>Make your changes and commit them.</strong></li>
-<code>
-git add .
-git commit -m "Add your commit message here"
-        </code>
-<li><strong>Push your changes to your forked repository.</strong></li>
-<code>git push origin feature/your-feature-name</code>
-
-  <li><strong>Open a pull request on GitHub.</strong></li>
-  </ol>
