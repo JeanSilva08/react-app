@@ -1,35 +1,21 @@
 // src/App.js
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from './services/userService';
-import UserProfileForm from './components/UserProfileForm';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUserProfile } from './redux/actions/userActions';
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const users = await getAllUsers();
-        // For simplicity, assuming the first user is the logged-in user
-        dispatch({ type: 'SET_USER', payload: users[0] });
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    fetchData();
-  }, [dispatch]);
+  const handleUpdateProfile = () => {
+    // Example: Dispatch an action to update the user profile
+    dispatch(updateUserProfile({ name: 'New Name', email: 'new@email.com' }));
+  };
 
   return (
     <div className="App">
-      <h1>User Profile</h1>
-      {user ? (
-        <UserProfileForm readOnly={!user.permissions.includes('user:profile:edit')} />
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h1>Hello, {user.name}!</h1>
+      <button onClick={handleUpdateProfile}>Update Profile</button>
     </div>
   );
 }
