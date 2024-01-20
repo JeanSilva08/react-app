@@ -90,6 +90,6 @@ react-app/
 
  <ol>
 <li>Ensure the application is running.</li>
-  <li>Open your web browser and navigate to <a href="http://localhost:3000">http://localhost:3000</a>.</li>
+  <li>Open your web browser and navigate to <a href="http://localhost:3000">http://localhost:3001</a>.</li>
  <li>Interact with the application, updating the profile form based on your permissions.</li>
   </ol>
