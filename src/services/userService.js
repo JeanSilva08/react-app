@@ -1,4 +1,3 @@
-// src/services/userService.js
 const BASE_URL = 'http://localhost:3000/api'; // Update with your backend URL
 
 export const getAllUsers = async () => {
@@ -18,7 +17,7 @@ export const createUser = async (userData) => {
 };
 
 export const updateUser = async (userId, userData) => {
-  const response = await fetch(`${BASE_URL}/user/${userId}`, {
+  const response = await fetch(`${BASE_URL}/users/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

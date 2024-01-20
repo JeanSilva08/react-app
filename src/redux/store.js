@@ -8,8 +8,8 @@ const initialState = {
   user: {
     permissions: [], // Permissions array
     userData: {
-      name: '',    // User's name
-      email: '',   // User's email
+      username: '', // User's username
+      email: '',    // User's email
       // Add more fields as needed
     },
   },
