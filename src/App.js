@@ -1,20 +1,34 @@
+// src/App.js
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllUsers, updateUserProfileAction } from './redux/actions/userActions';
+import useBusinessLogic from './businessLogic';
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-
-  const handleUpdateProfile = () => {
-    // Dispatch the action to update the user profile
-    dispatch(updateUserProfileAction(/* pass necessary parameters */));
-  };
+  const { generateDynamicForm, user, handleInputChange } = useBusinessLogic();
+  const dynamicForm = generateDynamicForm();
 
   return (
     <div className="App">
       <h1>Hello, {user.name}!</h1>
-      <button onClick={handleUpdateProfile}>Update Profile</button>
+      {/* Render other static content here */}
+      {dynamicForm.map((field, index) => (
+        <div key={index}>
+          <label>{field.label}</label>
+          {field.type === 'readonly' ? (
+            <input
+              type="text"
+              value={user[field.name]}
+              readOnly={true}
+            />
+          ) : (
+            <input
+              type="text"
+              value={user[field.name]}
+              onChange={(e) => handleInputChange(field.name, e.target.value)}
+            />
+          )}
+        </div>
+      ))}
+      <button>Update Profile</button>
     </div>
   );
 }
