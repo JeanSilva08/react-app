@@ -20,7 +20,7 @@
   <p>Before you begin, ensure you have the following installed:</p>
 
   <ul>
-  <li><a href="https://nodejs.org/">Node.js</a> (version X.X.X)</li>
+  <li><a href="https://nodejs.org/">Node.js</a> (version 21.6.0)</li>
   <li><a href="https://www.npmjs.com/">npm</a></li>
    </ul>
 
