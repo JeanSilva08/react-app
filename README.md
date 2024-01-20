@@ -1,7 +1,6 @@
 <h1>React App</h1>
 
-  <p>Welcome to the React App! This application is a React-based frontend that incorporates global state management,
-        custom form elements, and permissions-based features.</p>
+
 
   <h2>Table of Contents</h2>
 
