@@ -1,3 +1,4 @@
+// src/redux/reducers/userReducer.js
 const initialState = { permissions: [], userData: { username: '', email: '' } };
 
 const userReducer = (state = initialState, action) => {

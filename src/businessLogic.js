@@ -1,44 +1,52 @@
+// src/businessLogic.js
 import { useState, useEffect } from 'react';
 
-const useBusinessLogic = () => {
-  const [user, setUser] = useState({ name: '' }); // Initialize with default values
+const useBusinessLogic = (BASE_URL) => {
+  const [user, setUser] = useState({ name: 'Guest' }); // Provide a default name
   const [userPermissions, setUserPermissions] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('/api/users', {
+        const response = await fetch(`${BASE_URL}/api/users`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk', // Replace with your actual credentials
+            'Authorization': `Basic ${btoa('testuser:testpassword')}`,
           },
         });
 
-        if (response.ok) {
-          const userData = await response.json();
-          setUser(userData);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-          const permissionsResponse = await fetch(`/api/user/permissions/${userData.id}`, {
+        const userData = await response.json();
+        setUser(userData);
+
+        if (userData.id) {
+          const permissionsResponse = await fetch(`${BASE_URL}/api/user/permissions/${userData.id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Basic dGVzdHVzZXI6dGVzdHBhc3N3b3Jk', // Replace with your actual credentials
+              'Authorization': `Basic ${btoa('testuser:testpassword')}`,
             },
           });
 
-          if (permissionsResponse.ok) {
-            const permissionsData = await permissionsResponse.json();
-            setUserPermissions(permissionsData.permissions);
+          if (!permissionsResponse.ok) {
+            throw new Error(`HTTP error! Status: ${permissionsResponse.status}`);
           }
+
+          const permissionsData = await permissionsResponse.json();
+          setUserPermissions(permissionsData.permissions);
         }
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        setError(error.message);
       }
     };
 
     fetchUserData();
-  }, []);
+  }, [BASE_URL]);
 
   const generateDynamicForm = (canEdit) => {
     let dynamicForm = [];
@@ -58,7 +66,7 @@ const useBusinessLogic = () => {
     setUser((prevUser) => ({ ...prevUser, [fieldName]: value }));
   };
 
-  return { generateDynamicForm, user, handleInputChange };
+  return { generateDynamicForm, user, handleInputChange, error };
 };
 
 export default useBusinessLogic;
