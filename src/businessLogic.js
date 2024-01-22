@@ -1,8 +1,8 @@
 // src/businessLogic.js
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getAllUsers, updateUser } from './services/userService';  // Update import path
-import { setUserPermissions, updateUserProfile } from './redux/actions/userActions';  // Update import path
+import { getAllUsers } from './services/userService';
+import { setUserPermissions } from './redux/actions/userActions';
 
 const useBusinessLogic = (BASE_URL) => {
   const [user, setUser] = useState({ name: 'Guest' });
