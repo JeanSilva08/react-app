@@ -1,3 +1,4 @@
+// src/services/userService.js
 const BASE_URL = 'http://localhost:3000/api';
 
 export const getAllUsers = async () => {

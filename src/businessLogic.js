@@ -6,7 +6,6 @@ import { setUserPermissions, updateUserProfile } from './redux/actions/userActio
 
 const useBusinessLogic = (BASE_URL) => {
   const [user, setUser] = useState({ name: 'Guest' });
-  const [userPermissions, setUserPermissions] = useState([]);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
