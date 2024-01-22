@@ -27,8 +27,18 @@ export const fetchAllUsers = () => async (dispatch) => {
 
 export const updateUserProfileAction = (userId, userData) => async (dispatch) => {
   try {
-    await updateUser(userId, userData);
-    dispatch(updateUserProfile(userData));
+    const response = await updateUser(userId, userData);
+
+    // Log the full response for debugging purposes
+    console.log('Update User Response:', response);
+
+    // Check if the update was successful based on the response status
+    if (response.status === 200) {
+      const updatedUser = await response.json();
+      dispatch(updateUserProfile(updatedUser));
+    } else {
+      console.error('Error updating user profile:', response.statusText);
+    }
   } catch (error) {
     console.error('Error updating user profile:', error);
   }

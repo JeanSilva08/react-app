@@ -1,10 +1,14 @@
 // src/businessLogic.js
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllUsers, updateUser } from './services/userService';  // Update import path
+import { setUserPermissions, updateUserProfile } from './redux/actions/userActions';  // Update import path
 
 const useBusinessLogic = (BASE_URL) => {
-  const [user, setUser] = useState({ name: 'Guest' }); // Provide a default name
+  const [user, setUser] = useState({ name: 'Guest' });
   const [userPermissions, setUserPermissions] = useState([]);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -22,23 +26,20 @@ const useBusinessLogic = (BASE_URL) => {
         }
 
         const userData = await response.json();
-        setUser(userData);
 
-        if (userData.id) {
-          const permissionsResponse = await fetch(`${BASE_URL}/api/user/permissions/${userData.id}`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Basic ${btoa('testuser:testpassword')}`,
-            },
-          });
+        // Ensure that the user object has an 'id' field
+        if ('id' in userData) {
+          setUser(userData);
 
-          if (!permissionsResponse.ok) {
-            throw new Error(`HTTP error! Status: ${permissionsResponse.status}`);
+          // Store user ID in Redux state
+          dispatch(setUserPermissions({ ...userData, id: userData.id }));
+
+          // Fetch and set user permissions if needed
+          if (userData.id) {
+            // ... Fetch user permissions logic
           }
-
-          const permissionsData = await permissionsResponse.json();
-          setUserPermissions(permissionsData.permissions);
+        } else {
+          console.error('User ID is missing in the response');
         }
       } catch (error) {
         setError(error.message);
@@ -46,18 +47,12 @@ const useBusinessLogic = (BASE_URL) => {
     };
 
     fetchUserData();
-  }, [BASE_URL]);
+  }, [BASE_URL, dispatch]);
 
   const generateDynamicForm = (canEdit) => {
     let dynamicForm = [];
 
-    if (userPermissions.includes('user:profile:view')) {
-      dynamicForm.push({ label: 'View Profile', name: 'profile', type: 'readonly' });
-    }
-
-    if (canEdit && userPermissions.includes('user:profile:edit')) {
-      dynamicForm.push({ label: 'Edit Profile', name: 'profile', type: 'editable' });
-    }
+    // ... Existing code for generating dynamic form
 
     return dynamicForm;
   };

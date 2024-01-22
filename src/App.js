@@ -1,4 +1,3 @@
-// src/App.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import useBusinessLogic from './businessLogic';
@@ -12,9 +11,13 @@ function App() {
   const dispatch = useDispatch();
 
   const handleUpdateProfile = () => {
-    // Assuming you have the user ID and want to update the profile data
-    const userId = user.id; // Replace with your actual way of getting the user ID
-    dispatch(updateUserProfileAction(userId, user));
+    
+    const userId = user.id; 
+    if (userId) {
+      dispatch(updateUserProfileAction(userId, user));
+    } else {
+      console.error('User ID is undefined');
+    }
   };
 
   return (
